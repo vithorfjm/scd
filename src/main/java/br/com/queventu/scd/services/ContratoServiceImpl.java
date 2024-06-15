@@ -32,16 +32,16 @@ public class ContratoServiceImpl implements ContratoService {
 
     @Override
     public void criarContrato(Contrato contrato) {
-
+        contratoRepository.save(contrato);
     }
 
     @Override
     public void alterarContrato(Contrato contrato) {
-
+        // adicionar código ...
     }
 
     @Override
     public void excluirContrato(Long id) {
-
+        // adicionar código ...
     }
 }

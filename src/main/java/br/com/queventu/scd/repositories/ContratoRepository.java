@@ -12,5 +12,4 @@ public interface ContratoRepository extends JpaRepository<Contrato, Long> {
     List<Contrato> findByContratanteId(Long contratanteId);
 
     List<Contrato> findByContratadoId(Long contratadoId);
-
 }

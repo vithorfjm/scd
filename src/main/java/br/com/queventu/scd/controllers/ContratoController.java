@@ -1,13 +1,18 @@
 package br.com.queventu.scd.controllers;
 
 import br.com.queventu.scd.entities.Contrato;
+import br.com.queventu.scd.entities.PapelUsuario;
+import br.com.queventu.scd.entities.Usuario;
 import br.com.queventu.scd.services.ContratoService;
 import br.com.queventu.scd.services.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -30,11 +35,28 @@ public class ContratoController {
         return "contratos/lista-contratos";
     }
 
-    @GetMapping("/criar")
+    @GetMapping("/formCriacao")
     public String mostrarFormsCriacao(Model model) {
         Contrato contrato = new Contrato();
+        List<Usuario> gestores = usuarioService.listarUsuariosPeloPapel(PapelUsuario.GESTOR);
+        List<Usuario> clientes = usuarioService.listarUsuariosPeloPapel(PapelUsuario.CLIENTE);
+
         model.addAttribute("contrato", contrato);
+        model.addAttribute("gestores", gestores);
+        model.addAttribute("clientes", clientes);
         return "contratos/criar-contrato";
+    }
+
+    @PostMapping("/criar")
+    public String criarContrato(@ModelAttribute("contrato") Contrato contrato) {
+        Usuario contratante = usuarioService.listarUsuarioPeloId(contrato.getContratante().getId());
+        Usuario contratado = usuarioService.listarUsuarioPeloId(contrato.getContratado().getId());
+        contrato.setContratante(contratante);
+        contrato.setContratado(contratado);
+        contrato.setDataCriacao(LocalDateTime.now());
+        contrato.setDataUltimaAlteracao(LocalDateTime.now());
+        contratoService.criarContrato(contrato);
+        return "redirect:/contratos/listar";
     }
 
 }
