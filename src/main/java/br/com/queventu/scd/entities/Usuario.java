@@ -12,6 +12,7 @@ public class Usuario {
     @Column(name="nome_usuario")
     private String nome;
 
+    @Enumerated(EnumType.STRING)
     @Column(name="papel_usuario")
     private PapelUsuario papelUsuario;
 

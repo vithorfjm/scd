@@ -2,9 +2,11 @@ package br.com.queventu.scd.services;
 
 import br.com.queventu.scd.entities.Contrato;
 import br.com.queventu.scd.repositories.ContratoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ContratoServiceImpl implements ContratoService {
 
     private ContratoRepository contratoRepository;

@@ -5,6 +5,7 @@ import br.com.queventu.scd.entities.Contrato;
 
 import java.util.List;
 
+
 public interface ContratoService {
 
     List<Contrato> listarContratos();
