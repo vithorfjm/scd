@@ -1,10 +1,12 @@
 package br.com.queventu.scd.services;
 
 import br.com.queventu.scd.entities.Contrato;
+import br.com.queventu.scd.entities.Usuario;
 import br.com.queventu.scd.repositories.ContratoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContratoServiceImpl implements ContratoService {
@@ -21,6 +23,12 @@ public class ContratoServiceImpl implements ContratoService {
     }
 
     @Override
+    public Contrato listarContratoPeloId(Long id) {
+        Optional<Contrato> contratoOpt = contratoRepository.findById(id);
+        return contratoOpt.orElse(null);
+    }
+
+    @Override
     public List<Contrato> listarContratosPeloIdContratante(Long idContratante) {
         return contratoRepository.findByContratanteId(idContratante);
     }
@@ -31,14 +39,10 @@ public class ContratoServiceImpl implements ContratoService {
     }
 
     @Override
-    public void criarContrato(Contrato contrato) {
+    public void salvarContrato(Contrato contrato) {
         contratoRepository.save(contrato);
     }
 
-    @Override
-    public void alterarContrato(Contrato contrato) {
-        // adicionar código ...
-    }
 
     @Override
     public void excluirContrato(Long id) {

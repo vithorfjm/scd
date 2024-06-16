@@ -9,10 +9,7 @@ import br.com.queventu.scd.utils.NumeroUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -60,8 +57,32 @@ public class ContratoController {
         contrato.setContratado(contratado);
         contrato.setDataCriacao(LocalDateTime.now());
         contrato.setDataUltimaAlteracao(LocalDateTime.now());
-        contratoService.criarContrato(contrato);
+        contratoService.salvarContrato(contrato);
         return "redirect:/contratos/listar";
     }
 
+    @GetMapping("/formEdicao/{id}")
+    public String formEdicao(@PathVariable Long id, Model model) {
+        Contrato contrato = contratoService.listarContratoPeloId(id);
+        List<Usuario> gestores = usuarioService.listarUsuariosPeloPapel(PapelUsuario.GESTOR);
+        List<Usuario> clientes = usuarioService.listarUsuariosPeloPapel(PapelUsuario.CLIENTE);
+        model.addAttribute("contrato", contrato);
+        model.addAttribute("gestores", gestores);
+        model.addAttribute("clientes", clientes);
+        return "contratos/editar-contrato";
+    }
+
+    @PostMapping("/editar")
+    public String editarContrato(@ModelAttribute("contrato") Contrato contratoAtualizado,
+                                 HttpServletRequest req) {
+        Contrato contratoPreEdicao = contratoService.listarContratoPeloId(contratoAtualizado.getId());
+        String valorFormatado = req.getParameter("valorFormatado");
+        contratoAtualizado.setDataCriacao(contratoPreEdicao.getDataCriacao());
+        contratoAtualizado.setContratante(contratoPreEdicao.getContratante());
+        contratoAtualizado.setContratado(contratoPreEdicao.getContratado());
+        contratoAtualizado.setValor(NumeroUtils.valorMonetarioParaDouble(valorFormatado));
+        contratoAtualizado.setDataUltimaAlteracao(LocalDateTime.now());
+        contratoService.salvarContrato(contratoAtualizado);
+        return "redirect:/contratos/listar";
+    }
 }

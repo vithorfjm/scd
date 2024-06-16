@@ -10,13 +10,13 @@ public interface ContratoService {
 
     List<Contrato> listarContratos();
 
+    Contrato listarContratoPeloId(Long id);
+
     List<Contrato> listarContratosPeloIdContratante(Long idContratante);
 
     List<Contrato> listarContratosPeloIdContratado(Long idContratado);
 
-    void criarContrato(Contrato contrato);
-
-    void alterarContrato(Contrato contrato);
+    void salvarContrato(Contrato contrato);
 
     void excluirContrato(Long id);
 }

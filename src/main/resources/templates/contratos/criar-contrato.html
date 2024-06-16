@@ -11,43 +11,40 @@
         <h2>Criação de Contrato</h2>
         <hr>
         <form th:action="@{/contratos/criar}" th:object="${contrato}" method="POST" class="col-sm-4">
-
-            <label for="descricao"><strong>Descrição</strong></label>
-            <textarea class="form-control mb-4" th:field="${contrato.descricao}" id="descricao" required></textarea>
-
-            <label for="valor"><strong>Valor</strong></label>
-            <input class="form-control mb-4" type="text" name="valorFormatado" oninput="formatarValor(this)" id="valor" required>
-
-            <label for="contratante"><strong>Contratante</strong></label>
-            <select class="form-control mb-4" th:field="${contrato.contratante.id}" id="contratante" required>
-                <option value="">Selecione o contratante</option>
-                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"/>
-            </select>
-
-            <label for="contratado"><strong>Contratado</strong></label>
-            <select class="form-control mb-4" th:field="${contrato.contratado.id}" id="contratado" required>
-                <option value="">Selecione o contratado</option>
-                <option th:each="gestor : ${gestores}" th:value="${gestor.id}" th:text="${gestor.nome}"/>
-            </select>
+            <div class="mb-3">
+                <label for="valor"><strong>Valor</strong></label>
+                <input class="form-control" type="text" name="valorFormatado" oninput="formatarValor(this)" id="valor" required placeholder="Digite o valor do contrato">
+            </div>
+            <div class="mb-3">
+                <label for="descricao"><strong>Descrição</strong></label>
+                <textarea class="form-control" rows="5" th:field="${contrato.descricao}" id="descricao" required placeholder="Digite a descrição do contrato"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="contratante"><strong>Contratante</strong></label>
+                <select class="form-control" th:field="${contrato.contratante.id}" id="contratante" required>
+                    <option value="">Selecione o contratante</option>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"/>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="contratado"><strong>Contratado</strong></label>
+                <select class="form-control" th:field="${contrato.contratado.id}" id="contratado" required>
+                    <option value="">Selecione o contratado</option>
+                    <option th:each="gestor : ${gestores}" th:value="${gestor.id}" th:text="${gestor.nome}"/>
+                </select>
+            </div>
 
             <input class="btn btn-primary" type="submit" value="Salvar contrato">
         </form>
     </div>
     <script th:inline="javascript">
-        /* Script JavaScript para formatação dinâmica */
         function formatarValor(input) {
-            // Remove caracteres não numéricos
             let valorFormatado = input.value.replace(/\D/g, '');
-
             if (valorFormatado === "") {
                 input.value = "";
                 return;
             }
-
-            // Formata o valor como um número com duas casas decimais
             valorFormatado = (parseFloat(valorFormatado) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-            // Atualiza o valor no input
             input.value = valorFormatado;
         }
     </script>
