@@ -5,6 +5,8 @@ import br.com.queventu.scd.entities.PapelUsuario;
 import br.com.queventu.scd.entities.Usuario;
 import br.com.queventu.scd.services.ContratoService;
 import br.com.queventu.scd.services.UsuarioService;
+import br.com.queventu.scd.utils.NumeroUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,9 +50,12 @@ public class ContratoController {
     }
 
     @PostMapping("/criar")
-    public String criarContrato(@ModelAttribute("contrato") Contrato contrato) {
+    public String criarContrato(@ModelAttribute("contrato") Contrato contrato,
+                                HttpServletRequest req) {
+        String valorFormatado = req.getParameter("valorFormatado");
         Usuario contratante = usuarioService.listarUsuarioPeloId(contrato.getContratante().getId());
         Usuario contratado = usuarioService.listarUsuarioPeloId(contrato.getContratado().getId());
+        contrato.setValor(NumeroUtils.valorMonetarioParaDouble(valorFormatado));
         contrato.setContratante(contratante);
         contrato.setContratado(contratado);
         contrato.setDataCriacao(LocalDateTime.now());

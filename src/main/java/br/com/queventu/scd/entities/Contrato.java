@@ -8,8 +8,14 @@ import java.time.LocalDateTime;
 public class Contrato {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="contrato_id")
+    @Column(name="id")
     private Long id;
+
+    @Column(name="valor")
+    private Double valor;
+
+    @Column(name="descricao")
+    private String descricao;
 
     @Column(name="data_criacao")
     private LocalDateTime dataCriacao;
@@ -34,6 +40,22 @@ public class Contrato {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public LocalDateTime getDataCriacao() {

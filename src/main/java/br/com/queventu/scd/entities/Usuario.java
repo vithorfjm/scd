@@ -6,14 +6,14 @@ import jakarta.persistence.*;
 public class Usuario {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="usuario_id")
+    @Column(name="id")
     private Long id;
 
-    @Column(name="nome_usuario")
+    @Column(name="nome")
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="papel_usuario")
+    @Column(name="papel")
     private PapelUsuario papelUsuario;
 
     public Usuario() {
