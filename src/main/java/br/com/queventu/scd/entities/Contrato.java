@@ -23,11 +23,11 @@ public class Contrato {
     @Column(name="data_ultima_alteracao")
     private LocalDateTime dataUltimaAlteracao;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name="contratante_id")
     private Usuario contratante;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name="contratado_id")
     private Usuario contratado;
 

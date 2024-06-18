@@ -85,4 +85,11 @@ public class ContratoController {
         contratoService.salvarContrato(contratoAtualizado);
         return "redirect:/contratos/listar";
     }
+
+    @PostMapping("/excluir/{id}")
+    public String excluirContrato(@PathVariable Long id) {
+        System.out.println("ID> " + id);
+        contratoService.excluirContrato(id);
+        return "redirect:/contratos/listar";
+    }
 }

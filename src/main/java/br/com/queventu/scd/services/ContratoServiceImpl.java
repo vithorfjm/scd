@@ -43,9 +43,8 @@ public class ContratoServiceImpl implements ContratoService {
         contratoRepository.save(contrato);
     }
 
-
     @Override
     public void excluirContrato(Long id) {
-        // adicionar código ...
+        contratoRepository.deleteById(id);
     }
 }
