@@ -19,24 +19,25 @@
 <div class="container">
     <h2>Editar contrato</h2>
     <hr>
+    <a th:href="@{/contratos/listar}" class="btn btn-secondary mb-3">Voltar</a>
     <form th:action="@{/contratos/editar}" th:object="${contrato}" method="POST" class="col-sm-4">
         <div class="mb-3">
-            <label for="id" class="form-label">Id</label>
+            <label for="id" class="form-label"><strong>Id</strong></label>
             <input type="text" id="id" class="form-control readonly-input" th:field="*{id}" readonly>
         </div>
         <div class="mb-3">
-            <label for="valor" class="form-label">Valor</label>
+            <label for="valor" class="form-label"><strong>Valor</strong></label>
             <input type="text" id="valor" name="valorFormatado" class="form-control" th:value="${#numbers.formatCurrency(contrato.valor)}" onkeyup="formatarValor(this)">
         </div>
         <div class="mb-3">
-            <label for="descricao" class="form-label">Descrição</label>
+            <label for="descricao" class="form-label"><strong>Descrição</strong></label>
             <textarea id="descricao" name="descricao"  rows="6" class="form-control" th:field="*{descricao}"></textarea>
         </div>
         <div class="mb-3">
             <label for="contratante"><strong>Contratante</strong></label>
             <input type="text" class="form-control readonly-input" th:value="${contrato.contratante.nome}" id="contratante" readonly>
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
             <label for="contratado"><strong>Contratado</strong></label>
             <input type="text" class="form-control readonly-input" th:value="${contrato.contratado.nome}" id="contratado" readonly>
         </div>
