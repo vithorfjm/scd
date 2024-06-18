@@ -12,15 +12,15 @@
     <div class="container">
         <h2>Criação de Contrato</h2>
         <hr>
-        <a th:href="@{/contratos/listar}" class="btn btn-secondary mb-3">Voltar</a>
+        <a th:href="@{/contratos/listar}" class="btn btn-outline-primary  mb-3">Voltar</a>
         <form th:action="@{/contratos/criar}" th:object="${contrato}" method="POST" class="col-sm-4">
             <div class="mb-3">
                 <label for="valor"><strong>Valor</strong></label>
-                <input class="form-control" type="text" name="valorFormatado" oninput="formatarValor(this)" id="valor" required placeholder="Digite o valor do contrato">
+                <input class="form-control" th:maxlength="18" type="text" name="valorFormatado" oninput="formatarValor(this)" id="valor" required placeholder="Digite o valor do contrato">
             </div>
             <div class="mb-3">
                 <label for="descricao"><strong>Descrição</strong></label>
-                <textarea class="form-control" rows="5" th:field="${contrato.descricao}" id="descricao" required placeholder="Digite a descrição do contrato"></textarea>
+                <textarea class="form-control" th:maxlength="200" rows="5" th:field="${contrato.descricao}" id="descricao" required placeholder="Digite a descrição do contrato"></textarea>
             </div>
             <div class="mb-3">
                 <label for="contratante"><strong>Contratante</strong></label>
