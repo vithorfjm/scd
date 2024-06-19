@@ -72,6 +72,9 @@
                         <a th:href="@{/contratos/formEdicao/{id}(id=${contrato.id})}" class="btn btn-primary btn-sm me-1" title="Editar">
                             Editar
                         </a>
+                        <a th:href="@{/contratos/download/{id}(id=${contrato.id})}" class="btn btn-outline-success btn-sm me-1" title="Download">
+                            Baixar
+                        </a>
                         <button class="btn btn-danger btn-sm apagar" title="Excluir" th:data-id="${contrato.id}">
                             Excluir
                         </button>

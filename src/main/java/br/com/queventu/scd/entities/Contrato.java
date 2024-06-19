@@ -3,6 +3,8 @@ package br.com.queventu.scd.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Contrato {
@@ -30,6 +32,9 @@ public class Contrato {
     @ManyToOne()
     @JoinColumn(name="contratado_id")
     private Usuario contratado;
+
+    @OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Documento> documentos = new ArrayList<>();
 
     public Contrato() {
     }
@@ -88,5 +93,13 @@ public class Contrato {
 
     public void setContratado(Usuario contratado) {
         this.contratado = contratado;
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
     }
 }

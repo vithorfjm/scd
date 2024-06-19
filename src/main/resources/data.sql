@@ -16,3 +16,11 @@ INSERT INTO contrato (valor, descricao, data_criacao, data_ultima_alteracao, con
 INSERT INTO contrato (valor, descricao, data_criacao, data_ultima_alteracao, contratado_id, contratante_id) VALUES (150000000.0, 'Acordo entre Queventu Ltda. e Ilhéus, para instalação e operação de parque eólico, com compromisso de geração sustentável de energia e integração harmoniosa ao ecossistema local.', '2024-06-15 15:06:00', '2024-06-15 15:06:00', 2, 8);
 INSERT INTO contrato (valor, descricao, data_criacao, data_ultima_alteracao, contratado_id, contratante_id) VALUES (84300000.0, 'Contrato para o desenvolvimento de um projeto eólico, abrangendo a instalação de turbinas, integração à rede elétrica local e operação contínua por 15 anos.', '2024-06-15 15:06:00', '2024-06-15 15:06:00', 4, 10);
 INSERT INTO contrato (valor, descricao, data_criacao, data_ultima_alteracao, contratado_id, contratante_id) VALUES (700000.0, 'Contrato de parceria para a construção e gestão de um parque eólico, com foco na eficiência operacional, segurança ambiental e benefícios econômicos para a região.', '2024-06-15 15:06:00', '2024-06-15 15:06:00', 5, 8);
+
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (1, 'uploads\doc01.pdf', 'doc01.pdf');
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (2, 'uploads\doc02.pdf', 'doc02.pdf');
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (3, 'uploads\doc03.pdf', 'doc03.pdf');
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (4, 'uploads\doc04.pdf', 'doc04.pdf');
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (5, 'uploads\doc05.pdf', 'doc05.pdf');
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (6, 'uploads\doc06.pdf', 'doc06.pdf');
+INSERT INTO documento (contrato_id, caminho_arquivo, nome_arquivo) VALUES (7, 'uploads\doc07.pdf', 'doc07.pdf');

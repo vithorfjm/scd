@@ -34,6 +34,15 @@
             <textarea id="descricao" th:maxlength="200" name="descricao"  rows="6" class="form-control" th:field="*{descricao}" required></textarea>
         </div>
         <div class="mb-3">
+            <label class="form-label"><strong>Documento</strong></label>
+            <div class="d-flex align-items-center">
+                <input type="text" class="form-control readonly-input me-3" th:value="${contrato.documentos.get(0).nomeArquivo}"></input>
+                <a th:href="@{/contratos/download/{id}(id=${contrato.id})}" class="btn btn-outline-dark btn-sm" title="Download">
+                    Baixar
+                </a>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="contratante"><strong>Contratante</strong></label>
             <input type="text" class="form-control readonly-input" th:value="${contrato.contratante.nome}" id="contratante" readonly>
         </div>
